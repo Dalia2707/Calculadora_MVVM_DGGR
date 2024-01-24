@@ -105,6 +105,7 @@ namespace Calculadora_MVVM_DGGR.ViewModel
 
         private void HandleClear()
         {
+            IsOperatorSelected = false;
             Result = "0";
             clickedOperator = false;
             calculatorModel.PrimerNumero = 0;
@@ -112,6 +113,7 @@ namespace Calculadora_MVVM_DGGR.ViewModel
 
         private void HandleDelete()
         {
+            IsOperatorSelected = false;
             string currentResult = Result;
             if (currentResult.Length > 0)
             {
@@ -137,6 +139,7 @@ namespace Calculadora_MVVM_DGGR.ViewModel
 
         private void HandleEqual()
         {
+            IsOperatorSelected = false;
             try
             {
                 decimal segundoNumero = Convert.ToDecimal(Result);

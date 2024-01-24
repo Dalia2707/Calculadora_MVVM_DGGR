@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculadora_MVVM_DGGR.Vista.Vcalculadora"
+             xmlns:vm="clr-namespace:Calculadora_MVVM_DGGR.ViewModel">
+    <ContentPage.BindingContext>
+        <vm:VMcalculadora />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20">
+        <Frame BackgroundColor="White" Padding="15" Margin="0,0,0,20">
+            <Label Text="{Binding Result}" FontSize="60" TextColor="Black"
+                   FontAttributes="Bold" HorizontalOptions="End"></Label>
+        </Frame>
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- 1st row -->
+            <Button Grid.Row="0" Grid.Column="0" Text="C" FontSize="Large" FontAttributes="None"
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff" 
+                    Command="{Binding ClearCommand}"/>
+            <Button Grid.Row="0" Grid.Column="3" Text="⌫" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff" 
+                    Command="{Binding DeleteCommand}"/>
+            <Button Grid.Row="4" Grid.Column="0" Text="%" FontSize="Large" FontAttributes="None"
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff"
+                    Command="{Binding PercentageCommand}" Style="{StaticResource SelectedOperatorButtonStyle}"/>
+            <Button Grid.Row="0" Grid.Column="1" Text="÷" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff" 
+                    Command="{Binding OperatorCommand}" CommandParameter="÷" Style="{StaticResource SelectedOperatorButtonStyle}"/>
+
+            <!-- 2nd row -->
+            <Button Grid.Row="1" Grid.Column="0" Text="1" FontSize="Large" FontAttributes="None"
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White"
+                    Command="{Binding NumberCommand}" CommandParameter="1"/>
+            <Button Grid.Row="1" Grid.Column="1" Text="2" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="2"/>
+            <Button Grid.Row="1" Grid.Column="2" Text="3" FontSize="Large" FontAttributes="None"
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="3"/>
+            <Button Grid.Row="0" Grid.Column="2" Text="X" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff" 
+                    Command="{Binding OperatorCommand}" CommandParameter="X" Style="{StaticResource SelectedOperatorButtonStyle}"/>
+
+            <!-- 3rd row -->
+            <Button Grid.Row="2" Grid.Column="0" Text="4" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="4"/>
+            <Button Grid.Row="2" Grid.Column="1" Text="5" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="5"/>
+            <Button Grid.Row="2" Grid.Column="2" Text="6" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="6"/>
+            <Button Grid.Row="1" Grid.Column="3" Text="-" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="#246ffe" BackgroundColor="#fff" 
+                    Command="{Binding OperatorCommand}" CommandParameter="-" Style="{StaticResource SelectedOperatorButtonStyle}"/>
+
+            <!-- 4th row -->
+            <Button Grid.Row="3" Grid.Column="0" Text="7" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="7"/>
+            <Button Grid.Row="3" Grid.Column="1" Text="8" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="8"/>
+            <Button Grid.Row="3" Grid.Column="2" Text="9" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="9"/>
+            <Button Grid.Row="2" Grid.Column="3" Text="+" FontSize="Large" FontAttributes="Bold" 
+                    CornerRadius="15" TextColor="#246ffe" BackgroundColor= "White" 
+                    Command="{Binding OperatorCommand}" CommandParameter="+" Style="{StaticResource SelectedOperatorButtonStyle}"/>
+
+            <!-- 5th row -->
+            <Button Grid.Row="4" Grid.Column="2" Text="." FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White"  
+                    Command="{Binding PuntoCommmand}" CommandParameter="."/>
+            <Button Grid.Row="4" Grid.Column="1" Text="0" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="Black" BackgroundColor="White" 
+                    Command="{Binding NumberCommand}" CommandParameter="0"/>
+            <Button Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Text="=" FontSize="Large" FontAttributes="None" 
+                    CornerRadius="5" TextColor="White" BackgroundColor="#246ffe" 
+                    Command="{Binding EqualCommand}"/>
+        </Grid>
+    </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Definir estilos aquí -->
+            <Style x:Key="SelectedOperatorButtonStyle" TargetType="Button">
+                <Style.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsOperatorSelected}" Value="True">
+                        <Setter Property="BackgroundColor" Value="Red" />
+                        <!-- Puedes cambiar "TuColorSeleccionado" por el color deseado -->
+                    </DataTrigger>
+                </Style.Triggers> 
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

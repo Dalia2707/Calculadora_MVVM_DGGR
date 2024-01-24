@@ -32,7 +32,7 @@ namespace Calculadora_MVVM_DGGR.ViewModel
         private void HandleOperator(string oper)
         {
             clickedOperator = true;
-            selectedOperator = oper; // Almacena el operador seleccionado
+            selectedOperator = oper;
             calculatorModel.PrimerNumero = Convert.ToDecimal(Result);
             IsOperatorSelected = true;
         }
@@ -61,7 +61,6 @@ namespace Calculadora_MVVM_DGGR.ViewModel
 
         public VMcalculadora()
         {
-            // Initialize commands
             NumberCommand = new Command<string>(HandleNumber);
             ClearCommand = new Command(HandleClear);
             DeleteCommand = new Command(HandleDelete);
@@ -69,12 +68,10 @@ namespace Calculadora_MVVM_DGGR.ViewModel
             PercentageCommand = new Command(HandlePercentage);
             EqualCommand = new Command(HandleEqual);
             PuntoCommmand = new Command<string>(puntoNumber);
-            // Set initial values
             Result = "0";
         }
         private void puntoNumber(string number)
         {
-            // Handle number logic
             if (Result == "0" || clickedOperator)
             {
                 Result = (number == ".") ? "0." : number;
@@ -125,14 +122,6 @@ namespace Calculadora_MVVM_DGGR.ViewModel
                 }
             }
         }
-
-        //private void HandleOperator(string oper)
-        //{
-        //    clickedOperator = true;
-        //    selectedOperator = oper;
-        //    calculatorModel.PrimerNumero = Convert.ToDecimal(Result);
-        //}
-
         private void HandlePercentage()
         {
             try

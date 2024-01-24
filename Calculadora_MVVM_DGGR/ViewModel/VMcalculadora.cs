@@ -58,6 +58,7 @@ namespace Calculadora_MVVM_DGGR.ViewModel
         public ICommand EqualCommand { get; private set; }
         public ICommand PuntoCommmand { get; private set; }
 
+
         public VMcalculadora()
         {
             // Initialize commands
@@ -71,7 +72,6 @@ namespace Calculadora_MVVM_DGGR.ViewModel
             // Set initial values
             Result = "0";
         }
-
         private void puntoNumber(string number)
         {
             // Handle number logic

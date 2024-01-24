@@ -100,10 +100,11 @@
             <Style x:Key="SelectedOperatorButtonStyle" TargetType="Button">
                 <Style.Triggers>
                     <DataTrigger TargetType="Button" Binding="{Binding IsOperatorSelected}" Value="True">
-                        <Setter Property="BackgroundColor" Value="Red" />
+                        <Setter Property="BackgroundColor" Value="#5564eb" />
+                        <Setter Property="TextColor" Value="White"/>
                         <!-- Puedes cambiar "TuColorSeleccionado" por el color deseado -->
                     </DataTrigger>
-                </Style.Triggers> 
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
